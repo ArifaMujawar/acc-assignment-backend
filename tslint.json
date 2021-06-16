@@ -1,0 +1,23 @@
+{
+  "defaultSeverity": "error",
+  "extends": [
+    "tslint:recommended"
+  ],
+  "jsRules": {},
+  "rules": {
+    "semicolon": [true, "never"],
+    "only-arrow-functions": false,
+    "no-console": false,
+    "arrow-parens": false,
+    "promise-function-async": true,
+    "no-return-await": true,
+    "object-literal-sort-keys": false,
+    "no-floating-promises": true,
+    "no-trailing-whitespace": false,
+    "quotemark": [true, "single"],
+    "max-line-length": [false],
+    "max-classes-per-file": false,
+    "no-string-literal": false
+  },
+  "rulesDirectory": []
+}
