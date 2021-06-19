@@ -4,16 +4,21 @@ import * as moment from 'moment'
 export class PlaceService {
   constructor() {}
 
-  public async fetchAllPlaces(language) {
+  public async fetchAllPlaces(language_filter, limit) {
     const requiredData = []
     const url = `https://open-api.myhelsinki.fi/v1/places/`
-    const placesData = await Axios.get(url)
+    const placesData = await Axios.get(url, {
+      params: {
+        language_filter,
+        limit,
+      },
+    })
 
     const arrayOfPlaces = placesData.data.data
     arrayOfPlaces.forEach(place => {
       const addressString = Object.values(place.location.address).join(',')
       const temp = 'place.name'
-      const jagah = eval(temp.concat(`.${language}`))
+      const jagah = eval(temp.concat(`.${language_filter}`))
 
       const format = 'hh:mm:ss'
       const curTime = moment(moment(), format)

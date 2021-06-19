@@ -1,0 +1,105 @@
+components:
+  schemas:
+    Images:
+      type: object
+      properties:
+        url:
+          type: string
+        copyrightHolder:
+          type: string
+        licenseType:
+          type: object
+    Tags:
+      type: object
+      properties:
+        id:
+          type: string
+        text:
+          type: string
+    additionalDescription:
+      type: object
+      properties:
+        langCode:
+          type: string
+        text:
+          type: string
+    Event:
+      description: Event
+      type: object
+      properties:
+        id:
+          type: string
+          example: kulke:53743
+        name:
+          type: object
+          fi:
+            type: string
+          en:
+            type: string
+          sv:
+            type: string
+        sourceType:
+          type: object
+        infoUrl:
+          type: string
+        modifiedAt:
+          type: date
+          example: 2021-06-17T12:15:00.516Z
+        location:
+          type: object
+          properties:
+            lat:
+              type: object
+            lon:
+              type: object
+            address:
+              type: object
+              properties:
+                streetAddress:
+                  type: string
+                postalCode:
+                  type: string
+                locality:
+                  type: string
+        description:
+          type: object
+          properties:
+            intro:
+              type: string
+            body:
+              type: string
+            images:
+              type: array
+              items:
+                $ref: '#/components/schemas/Images'
+        tags:
+          type: array
+          items:
+            $ref: '#/components/schemas/Tags'
+        eventDates:
+          type: object
+          properties:
+            startingDay:
+              type: date
+              example: 2021-06-17T12:15:00.517Z
+            endingDay:
+              type: date
+              example: 2021-06-17T12:15:00.517Z
+            additionalDescription:
+              type: array
+              items:
+                $ref: '#/components/schemas/additionalDescription'
+    Events:
+      description: Events
+      type: object
+      properties:
+        type: array
+        items:
+          $ref: '#/components/schemas/Event'
+  responses:
+    Events:
+      description: display all the items
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Events'

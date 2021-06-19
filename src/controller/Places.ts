@@ -1,11 +1,9 @@
 import { Get, JsonController, QueryParam } from 'routing-controllers'
-import { Connection } from 'typeorm'
 import { PlaceService } from '../services/Places'
 import 'reflect-metadata'
 
 @JsonController('/places')
 export class PlacesController {
-  private conn: Connection
   private PlaceService
   constructor() {
     this.PlaceService = new PlaceService()
@@ -19,7 +17,7 @@ export class PlacesController {
    *    security:
    *      - jwt: []
    *    summary: Fetches all the places from myhelsinki website and displays.
-   *    description: write here something
+   *    description: Fetches all the places from myhelsinki website and displays.
    *    parameters:
    *      - in: query
    *        name: languageFilter
@@ -27,19 +25,21 @@ export class PlacesController {
    *        schema:
    *          type: string
    *          example: en
+   *      - in: query
+   *        name: limit
+   *        description: limit
+   *        schema:
+   *          type: number
+   *          example: 3
    *    responses:
    *      200:
-   *        $ref: '#/components/responses/Ticket'
-   *      403:
-   *        $ref: '#definitions/AdminAccessRequired'
-   *      500:
-   *        $ref: '#definitions/DatabaseError'
+   *        $ref: '#/components/responses/Places'
    */
 
   @Get()
-  public async getAllPlaces(@QueryParam('languageFilter') languageFilter: string) {
+  public async getAllPlaces(@QueryParam('languageFilter') languageFilter: string, @QueryParam('limit') limit: number) {
     try {
-      return await this.PlaceService.fetchAllPlaces(languageFilter)
+      return await this.PlaceService.fetchAllPlaces(languageFilter, limit)
     } catch (e) {
       throw e
     }
