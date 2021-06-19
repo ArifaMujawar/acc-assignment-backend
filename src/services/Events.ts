@@ -25,7 +25,7 @@ export class EventService {
         name: event.name['fi'],
         info: event['info_url'],
         description: event.description,
-        event_dates: startDate[0] + ' ' + endDate[0],
+        event_dates: startDate[0] == endDate[0] ? startDate[0] : startDate[0] + '-' + endDate[0],
       }
       result.data.push(specificEvent)
     })
