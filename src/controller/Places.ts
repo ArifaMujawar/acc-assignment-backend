@@ -31,15 +31,25 @@ export class PlacesController {
    *        schema:
    *          type: number
    *          example: 3
+   *      - in: query
+   *        name: start
+   *        description: start
+   *        schema:
+   *          type: number
+   *          example: 3
    *    responses:
    *      200:
    *        $ref: '#/components/responses/Places'
    */
 
   @Get()
-  public async getAllPlaces(@QueryParam('languageFilter') languageFilter: string, @QueryParam('limit') limit: number) {
+  public async getAllPlaces(
+    @QueryParam('languageFilter') languageFilter: string,
+    @QueryParam('limit') limit: number,
+    @QueryParam('start') start: number
+  ) {
     try {
-      return await this.PlaceService.fetchAllPlaces(languageFilter, limit)
+      return await this.PlaceService.fetchAllPlaces(languageFilter, limit, start)
     } catch (e) {
       throw e
     }
