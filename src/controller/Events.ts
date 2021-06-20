@@ -30,15 +30,25 @@ export class EventsController {
    *        schema:
    *          type: number
    *          example: 3
+   *      - in: query
+   *        name: tag
+   *        description: tag
+   *        schema:
+   *          type: string
+   *          example: General
    *    responses:
    *      200:
    *        $ref: '#/components/responses/Events'
    */
 
   @Get()
-  public async getAllPlaces(@QueryParam('limit') limit: number, @QueryParam('start') start: number) {
+  public async getAllPlaces(
+    @QueryParam('limit') limit: number,
+    @QueryParam('start') start: number,
+    @QueryParam('tag') tag: string
+  ) {
     try {
-      return await this.EventService.fetchAllEvents(limit, start)
+      return await this.EventService.fetchAllEvents(limit, start, tag)
     } catch (e) {
       throw e
     }
