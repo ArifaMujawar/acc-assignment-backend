@@ -1,4 +1,5 @@
-import Axios from 'axios'
+const axios = require('axios')
+
 import { availableTags } from '../utils/AvailableTags'
 export class EventService {
   constructor() {}
@@ -10,7 +11,7 @@ export class EventService {
     }
 
     const url = `https://open-api.myhelsinki.fi/v1/events/`
-    const eventsData = await Axios.get(url, {
+    const eventsData = await axios.get(url, {
       params: {
         limit,
         start,
@@ -19,7 +20,7 @@ export class EventService {
     })
 
     const arrayOfEvents = eventsData.data.data
-    console.log('arrayOF events', arrayOfEvents)
+
     arrayOfEvents.forEach(event => {
       const startDate = event.event_dates.starting_day && event.event_dates.starting_day.split('T')
       const endDate = event.event_dates.ending_day && event.event_dates.ending_day.split('T')
