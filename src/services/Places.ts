@@ -38,7 +38,12 @@ export class PlaceService {
 
   public checkIfPlaceIsOpen(place) {
     const currentTime = momentTz().tz('Europe/Helsinki').format('HH:mm:ss')
-    const curDay = moment().weekday() - 1
+
+    // Moment treats sunday as 0
+    // I assume the weekday_id: 7  as Sunday, it is confusing as saturday and sunday are not weekdays
+    let curDay = moment().weekday() - 1
+    if (curDay === -1) curDay = 6
+
     const checkIfValues =
       !!place.opening_hours.hours &&
       !!place.opening_hours.hours[curDay].opens &&
