@@ -14,7 +14,7 @@ export class EventService {
       params: {
         limit,
         start,
-        tag,
+        tags_filter: tag,
       },
     })
 
