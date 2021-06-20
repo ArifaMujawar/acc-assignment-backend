@@ -1,5 +1,5 @@
 const axios = require('axios')
-const mockData = require('./mockData')
+const mockData = require('./mockEventsData')
 const tags = require('../utils/AvailableTags')
 
 const events = require('../services/Events')

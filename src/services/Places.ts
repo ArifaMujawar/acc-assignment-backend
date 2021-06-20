@@ -1,4 +1,4 @@
-import Axios from 'axios'
+const axios = require('axios')
 const moment = require('moment')
 const momentTz = require('moment-timezone')
 
@@ -8,7 +8,7 @@ export class PlaceService {
   public async fetchAllPlaces(language_filter, limit, start) {
     const requiredData = []
     const url = `https://open-api.myhelsinki.fi/v1/places/`
-    const placesData = await Axios.get(url, {
+    const placesData = await axios.get(url, {
       params: {
         language_filter,
         limit,
@@ -33,7 +33,7 @@ export class PlaceService {
 
       requiredData.push(specificPlace)
     })
-    return requiredData
+    return { places: requiredData }
   }
 
   public checkIfPlaceIsOpen(place) {
