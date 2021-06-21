@@ -7,7 +7,7 @@ export class PlaceService {
 
   public async fetchAllPlaces(language_filter, limit, start) {
     const requiredData = []
-    const url = `https://open-api.myhelsinki.fi/v1/places/`
+    const url = `${process.env.BASE_URL}/places/`
     const placesData = await axios.get(url, {
       params: {
         language_filter,

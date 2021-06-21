@@ -10,7 +10,6 @@ import { Server } from 'net'
 import { useExpressServer } from 'routing-controllers'
 import { EventsController } from './controller/Events'
 import { PlacesController } from './controller/Places'
-import { ActivitiesController } from './controller/Activities'
 
 export default class App {
   private app: express.Application
@@ -33,6 +32,11 @@ export default class App {
   }
 
   public async init(NODE_ENV: string = 'development', PORT: number = 3000): Promise<express.Application> {
+    /**
+     * Setting environment for development|production
+     */
+    NODE_ENV = process.env.NODE_ENV || NODE_ENV
+
     /**
      * Create our app w/ express
      */
@@ -61,6 +65,10 @@ export default class App {
     this.app.use(morgan('combined'))
 
     /**
+     * Show build file contents
+     */
+    this.app.use(express.static('build'))
+    /**
      * Body parsers and methods
      */
     this.app.use(
@@ -80,7 +88,7 @@ export default class App {
     useExpressServer(this.app, {
       classTransformer: true,
       development: false,
-      controllers: [ActivitiesController, EventsController, PlacesController],
+      controllers: [EventsController, PlacesController],
       defaultErrorHandler: false,
     })
 

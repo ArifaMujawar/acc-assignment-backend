@@ -10,7 +10,7 @@ export class EventService {
       data: [],
     }
 
-    const url = `https://open-api.myhelsinki.fi/v1/events/`
+    const url = `${process.env.BASE_URL}/events/`
     const eventsData = await axios.get(url, {
       params: {
         limit,
