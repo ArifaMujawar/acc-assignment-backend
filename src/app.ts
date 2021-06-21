@@ -31,7 +31,7 @@ export default class App {
     })
   }
 
-  public async init(NODE_ENV: string = 'development', PORT: number = 3000): Promise<express.Application> {
+  public async init(NODE_ENV: string = 'development', PORT: number = 4000): Promise<express.Application> {
     /**
      * Setting environment for development|production
      */
@@ -64,10 +64,6 @@ export default class App {
      */
     this.app.use(morgan('combined'))
 
-    /**
-     * Show build file contents
-     */
-    this.app.use(express.static('build'))
     /**
      * Body parsers and methods
      */
