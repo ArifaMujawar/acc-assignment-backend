@@ -8,4 +8,4 @@
 * Add `.env` same as `sample.env`
 * Run the project using `yarn dev`
 * The api will be running on: http://localhost:4000
-* You can read the API documentation from: http:localhost:4000/api-docs
+* You can read the API documentation from: http://localhost:4000/api-docs
