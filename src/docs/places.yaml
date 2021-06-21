@@ -10,16 +10,19 @@ components:
         licenseType:
           type: object
 
-    Event:
-      description: Event
+    placesObject:
+      description: placesObject
       type: object
       properties:
         name:
           type: string
-          example: Maunulan dekkarilukupiiri
-        event_dates:
-          type: date
-          example: '2021-12-16'
+          example: A. Tillander
+        address:
+          type: string
+          example: Aleksanterinkatu 17,00100,Helsinki
+        info:
+          type: boolean
+          example: true
         description:
           type: object
           properties:
@@ -32,26 +35,19 @@ components:
               items:
                 $ref: '#/components/schemas/Images'
 
-    Events:
-      description: Events
+    Places:
+      description: Places
       type: object
       properties:
-        nextStartIndex:
-          type: number
-          example: 3
-        availableTags:
+        places:
           type: array
           items:
-            type: string
-            example: ['Book clubs', 'General', 'Senior citizens']
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Event'
+            $ref: '#/components/schemas/placesObject'
+
   responses:
-    Events:
-      description: display all the items
+    Places:
+      description: display all the places items
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/Events'
+            $ref: '#/components/schemas/Places'

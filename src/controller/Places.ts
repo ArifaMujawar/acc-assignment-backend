@@ -36,7 +36,7 @@ export class PlacesController {
    *        description: start
    *        schema:
    *          type: number
-   *          example: 3
+   *          example: 0
    *    responses:
    *      200:
    *        $ref: '#/components/responses/Places'
